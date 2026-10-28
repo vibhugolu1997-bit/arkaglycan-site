@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User guide | Arka Glycan</title>
+<meta name="description" content="How to install and use Arka Glycan: settings, results, confidence tiers, exports, licence and troubleshooting.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="17" width="12" height="12" rx="2" fill="#f5a524"/><circle cx="23" cy="9" r="6" fill="#ffc768"/><path d="M15 21 L19 13" stroke="#e8edf7" stroke-width="2"/></svg>Arka Glycan</a>
+    <nav class="nav" aria-label="Main"><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="download.html">Download</a><a href="user-guide.html" aria-current="page">User guide</a><a href="contact.html">Contact</a></nav>
+  </div>
+</header>
+<main>
+<section><div class="wrap prose">
+<p class="muted small">This is the guide included in the app (Help in the header). Arka Glycan is in an invite-only beta; see <a href="download.html">Download</a>.</p>
+<h1 id="arka-glycan-user-guide">Arka Glycan user guide</h1>
+<p>Arka Glycan finds the glycan compositions in released-glycan LC-MS/MS data. You give it a
+spectrum file; it matches every MS/MS precursor to glycan compositions, checks the fragment
+ions, and gives you a table of glycans with a confidence tier, the spectra behind each one, and
+CSV, Excel and Methods-text downloads.</p>
+<p>Everything runs on your own computer. Your files never leave it, and no internet connection is
+needed except to download the optional Thermo converter.</p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#install">Install</a></li>
+<li><a href="#first-start-the-thermo-converter">First start: the Thermo converter</a></li>
+<li><a href="#try-the-example">Try the example</a></li>
+<li><a href="#start-an-analysis">Start an analysis</a></li>
+<li><a href="#the-new-analysis-settings">The New analysis settings</a></li>
+<li><a href="#reading-the-results">Reading the results</a></li>
+<li><a href="#confidence-tiers">Confidence tiers</a></li>
+<li><a href="#the-spectrum-viewer">The spectrum viewer</a></li>
+<li><a href="#exports-and-methods-text">Exports and Methods text</a></li>
+<li><a href="#licence-and-trial">Licence and trial</a></li>
+<li><a href="#where-your-data-are">Where your data are</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<h2 id="install">Install</h2>
+<h3 id="macos-apple-silicon">macOS (Apple Silicon)</h3>
+<ol>
+<li>Unzip <code>Arka-Glycan-macos-arm64.zip</code> and drag <strong>Arka Glycan</strong> into <strong>Applications</strong>.</li>
+<li>Double-click it. Because the app is not yet signed by Apple, macOS shows
+   <em>"Arka Glycan" Not Opened</em> with only <strong>Done</strong> and <strong>Move to Trash</strong>. Click <strong>Done</strong>.</li>
+<li>Open <strong>System Settings → Privacy &amp; Security</strong>, scroll to the message about Arka Glycan and
+   click <strong>Open Anyway</strong>, then confirm with your password. You only do this once.</li>
+</ol>
+<p>Arka Glycan has no window or Dock icon: it opens a tab in your web browser. To stop it, click
+<strong>Quit</strong> in the page header. Opening the app again while it runs simply opens another tab.</p>
+<h3 id="windows-10-and-11-64-bit">Windows 10 and 11 (64-bit)</h3>
+<ol>
+<li>Run <code>Arka-Glycan-Setup.exe</code>. Because the installer is not yet signed, Windows may show
+   <em>"Windows protected your PC"</em>. Click <strong>More info</strong>, then <strong>Run anyway</strong>.</li>
+<li>Follow the installer. It installs for your user only (no administrator rights needed) and adds
+   <strong>Arka Glycan</strong> and <strong>Uninstall Arka Glycan</strong> to the Start menu.</li>
+<li>Start <strong>Arka Glycan</strong> from the Start menu. It opens a tab in your default browser; click
+   <strong>Quit</strong> in the page header to stop it.</li>
+</ol>
+<p>Uninstalling removes the program but keeps your analyses (see
+<a href="#where-your-data-are">Where your data are</a>).</p>
+<h2 id="first-start-the-thermo-converter">First start: the Thermo converter</h2>
+<p>On first start Arka Glycan opens the <strong>Converter</strong> page. It is only needed for Thermo <code>.raw</code>
+files; mzML, mzXML and Bruker files work without it.</p>
+<p>The converter, ThermoRawFileParser, contains Thermo's RawFileReader library, whose licence does
+not allow Arka Glycan to include it. So the page shows Thermo's licence text. If you agree, tick
+<strong>I have read and accept Thermo's licence terms</strong> and click <strong>Accept and download converter</strong>.
+Arka Glycan downloads it (about 33 MB on macOS, 51 MB on Windows) from the CompOmics release on
+GitHub, checks it against a fixed checksum, and installs it for you. Your acceptance is recorded
+with the date.</p>
+<p>Click <strong>Not now (mzML / mzXML only)</strong> if you do not use <code>.raw</code> files; you can come back via
+<strong>Converter</strong> in the header at any time.</p>
+<h2 id="try-the-example">Try the example</h2>
+<p>On the <strong>Projects</strong> page, click <strong>Try an example</strong>. Arka Glycan analyses a bundled 6-minute
+slice of a public breast-cancer cell-surface N-glycan run (GlycoPOST GPST000536, reduced and
+permethylated, ion-trap CID) with the settings that were validated on that run. It takes a few
+seconds and finds about 60 glycan compositions, a quick way to see what results look like.</p>
+<h2 id="start-an-analysis">Start an analysis</h2>
+<p>Click <strong>New analysis</strong>, choose your file, check the settings and click <strong>Start analysis</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What to upload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thermo <code>.raw</code></td>
+<td>the file itself; it is converted first (needs the converter)</td>
+</tr>
+<tr>
+<td>Bruker timsTOF <code>.d</code></td>
+<td>the <code>.d</code> folder <strong>compressed into a .zip</strong> (in Finder: right-click → Compress; in Windows: right-click → Send to → Compressed folder)</td>
+</tr>
+<tr>
+<td>mzML or mzXML</td>
+<td>the file itself (from msconvert, ThermoRawFileParser or another converter)</td>
+</tr>
+</tbody>
+</table>
+<p>The file is copied into the analysis folder on your computer. The analysis page shows progress;
+most runs take seconds to a few minutes. You can start several; they run one after another.</p>
+<p>Bruker files: timsTOF DDA-PASEF and MS/MS (MRM) runs work. Older Bruker instruments (maXis,
+impact, amaZon) write a different format; convert those to mzML with ProteoWizard msconvert on
+Windows first.</p>
+<h2 id="the-new-analysis-settings">The New analysis settings</h2>
+<p>The defaults are the settings validated on public datasets: reduced, permethylated human N-glycans
+analysed in positive mode. Change a setting when your sample or instrument differs.</p>
+<h3 id="data">Data</h3>
+<ul>
+<li><strong>Spectrum file</strong>: see <a href="#start-an-analysis">Start an analysis</a>.</li>
+<li><strong>Name</strong>: how the analysis is listed. Leave it empty to use the file name.</li>
+</ul>
+<h3 id="sample">Sample</h3>
+<ul>
+<li><strong>Derivative / label</strong>: how your glycans were prepared. The masses depend on it, so it must
+  match your sample:</li>
+<li><em>Native</em>: free, unmodified glycans.</li>
+<li><em>Reduced (alditol)</em>: reduced with borohydride, not derivatised (common for PGC-LC and
+    O-glycans).</li>
+<li><em>Permethylated</em> or <em>Reduced + permethylated</em>: the most common choices for MALDI and
+    positive-mode LC-MS of N-glycans.</li>
+<li><em>2-AB</em>, <em>Procainamide</em>, <em>RapiFluor-MS</em>: fluorescently labelled glycans (HILIC-FLR-MS).</li>
+<li><strong>Glycan class</strong>: <em>N-glycans</em> (default) or <em>O-glycans (mucin-type)</em>. It sets the glycan types,
+  the composition ranges and the confidence rules used for the results, and choosing O-glycans
+  turns off the N-glycan filter.</li>
+<li><strong>Sample type</strong>: <em>Human</em> excludes NeuGc, which humans cannot make (any NeuGc call would be a
+  mis-assignment, as NeuGc + Fuc has the same mass as NeuAc + Hex). Choose <em>Other species</em> for
+  animal samples, which can contain NeuGc.</li>
+<li><strong>N-glycan plausibility filter</strong>: only allows compositions that can be N-glycans: the
+  GlcNAc₂Man₃ core (HexNAc ≥ 2 and Hex ≥ 3), at most one fucose per HexNAc beyond the first, and
+  at most one sialic acid per antenna. Leave it on for N-glycans: it removes many chance matches.
+  It is turned off for O-glycans.</li>
+</ul>
+<h3 id="precursor-matching">Precursor matching</h3>
+<ul>
+<li><strong>Adducts</strong>: the ions your precursors carry. Positive mode: H⁺ (protonated) and NH₄⁺
+  (ammonium, common with permethylated glycans in ammonium-containing solvents); Na⁺ and K⁺ for
+  sodiated or potassiated ions. Negative mode: <strong>−H⁺</strong> for deprotonated [M−H]⁻ ions. Positive and
+  negative carriers cannot be combined; choosing one clears the other.</li>
+<li><strong>Mixed adducts</strong>: lets a doubly or triply charged ion carry different adducts, such as
+  [M+H+NH₄]²⁺. Keep it on when you selected more than one positive adduct.</li>
+<li><strong>Precursor tolerance (ppm)</strong>: how far a measured precursor may be from the theoretical mass.
+  10 ppm suits Orbitrap and timsTOF data. Use 20–50 ppm for lower-resolution instruments; a wider
+  window gives more chance matches.</li>
+<li><strong>Maximum precursor charge</strong>: spectra recorded at a higher charge are skipped (6 by default).</li>
+<li><strong>¹³C isotope offsets to consider</strong>: instruments sometimes pick the first or second ¹³C
+  isotope peak instead of the monoisotopic one, especially for large glycans. 0–2 lets Arka Glycan
+  correct for that. Use 0 only if your instrument always selects the monoisotopic peak.</li>
+<li><strong>Estimate isotope offset from MS1</strong>: looks at the MS1 spectrum just before each MS/MS to see
+  whether the selected peak was an isotope peak, and starts the search there. Leave it on; it
+  makes a large difference on serum data.</li>
+</ul>
+<h3 id="fragment-scoring">Fragment scoring</h3>
+<ul>
+<li><strong>Spectra to score</strong>: <em>All MS/MS</em>, or only spectra from the <em>Orbitrap (FTMS)</em> or the
+  <em>ion trap (ITMS)</em>. Methods that record each precursor twice (for example HCD in the Orbitrap
+  and CID in the ion trap) give two spectra per precursor; choosing one detector avoids counting
+  them twice.</li>
+<li><strong>Fragment tolerance</strong>: how close a peak must be to a theoretical fragment. 20 ppm for
+  high-resolution (Orbitrap, TOF) fragments; about 0.15 Da for ion-trap CID fragments.</li>
+<li><strong>Fragment calibration offset (Da)</strong>: a constant shift added to all theoretical fragments, for
+  instruments whose fragment masses are systematically off (for example +0.2 Da for some ion-trap
+  data). Leave it at 0 unless matched fragments are consistently shifted in the spectrum viewer.</li>
+<li><strong>Let fragments break precursor ties</strong>: when two compositions match the precursor almost equally
+  well (within 5 ppm), lets the fragment score choose between them. It is off by default because
+  it did not improve agreement with published assignments; fragment scores are reported either
+  way.</li>
+</ul>
+<p><strong>Reset to validated defaults</strong> restores all settings.</p>
+<h2 id="reading-the-results">Reading the results</h2>
+<p>The analysis page lists one row per glycan composition, sorted by the number of supporting
+spectra. The line above the table summarises the glycan types, the fucosylated and sialylated
+fractions and the confidence tiers (all counted over compositions).</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Composition</td>
+<td>monosaccharide counts (Hex, HexNAc, dHex = fucose, NeuAc, NeuGc) with a schematic SNFG cartoon. Branching and linkages in the cartoon are assumed, not measured.</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high, medium or low (see <a href="#confidence-tiers">Confidence tiers</a>); hover for the reason</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>N-glycans: paucimannose, high-mannose, hybrid, complex. O-glycans: Tn, core 1, extended. From the composition alone.</td>
+</tr>
+<tr>
+<td>Neutral mass</td>
+<td>monoisotopic mass of the glycan in the form you analysed (derivative included)</td>
+</tr>
+<tr>
+<td>Spectra</td>
+<td>MS/MS spectra assigned to this composition</td>
+</tr>
+<tr>
+<td>Best scan</td>
+<td>the strongest supporting spectrum; click the composition to open it</td>
+</tr>
+<tr>
+<td>RT (min)</td>
+<td>retention time of the best scan</td>
+</tr>
+<tr>
+<td>Ion</td>
+<td>the precursor ion of the best scan, e.g. [M+2H]²⁺</td>
+</tr>
+<tr>
+<td>ppm (best scan)</td>
+<td>precursor mass error of the best scan</td>
+</tr>
+<tr>
+<td>q-value</td>
+<td>fragment-based false-discovery estimate of the best scan (lower is better). Treat it as a guide: on low-resolution ion-trap spectra it is often high even for correct assignments.</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>fragment score of the best scan (higher means more matched fragments than chance would give)</td>
+</tr>
+</tbody>
+</table>
+<p>Filters above the table narrow the list by confidence, composition text (e.g. <code>NeuAc2</code>), minimum
+number of spectra and maximum q-value. <strong>Columns</strong> shows or hides columns (for example the hidden
+"q ≤ 0.05" count). The table never removes glycans by itself: low-confidence rows are hidden only by
+the default "High and medium" filter, and the line under the filters says how many are hidden.</p>
+<h2 id="confidence-tiers">Confidence tiers</h2>
+<p>Every composition gets a tier from how much evidence supports it and how typical the composition
+is. Rows are never removed, only tiered.</p>
+<p><strong>N-glycans</strong></p>
+<ul>
+<li><strong>High</strong>: at least 3 supporting spectra within a 2-minute window (the glycan elutes as a real
+  peak) and a composition within typical ranges.</li>
+<li><strong>Medium</strong>: at least 2 spectra, or a composition slightly outside the ranges.</li>
+<li><strong>Low</strong>: a single spectrum, or an unusual composition.</li>
+</ul>
+<p>Typical ranges: Hex ≤ HexNAc + 4 (up to Man9 for high-mannose), no more sialic acids than antennae,
+native mass up to 4,500 Da. "Slightly outside" means one rule missed by a little (2 Hex, 1 sialic
+acid or 500 Da).</p>
+<p><strong>O-glycans</strong> (when Glycan class is O-glycans)</p>
+<ul>
+<li><strong>High</strong>: within typical mucin O-glycan ranges, with 3 co-eluting spectra or 2 spectra with
+  fragment evidence (q ≤ 0.01).</li>
+<li><strong>Medium</strong>: 2 spectra, or a single spectrum with fragment evidence. Direct-infusion and targeted
+  runs give one summed spectrum per precursor, so this is where most of their glycans land.</li>
+<li><strong>Low</strong>: a single spectrum without fragment evidence, or an unusual composition.</li>
+</ul>
+<p>Typical O-glycan ranges: at least one HexNAc, Hex ≤ HexNAc + 2, fucoses ≤ Hex + HexNAc − 1, sialic
+acids ≤ Hex + 1, native mass up to 3,000 Da. Sulfated O-glycans cannot yet be assigned.</p>
+<h2 id="the-spectrum-viewer">The spectrum viewer</h2>
+<p>Click a composition to open its best spectrum. Peaks matched by a theoretical fragment are coloured:
+blue for B (and, in negative mode, C) ions from the non-reducing end, orange for Y (and Z) ions
+that keep the reducing end; grey peaks are unmatched. The dashed line marks the precursor. Hover
+over a peak for its m/z, intensity and matching ions; drag across the plot to zoom and click
+<strong>Reset zoom</strong> to go back. The table below the plot lists every matched fragment with its error.
+Other spectra of the same composition are listed below that.</p>
+<h2 id="exports-and-methods-text">Exports and Methods text</h2>
+<p>On the analysis page:</p>
+<ul>
+<li><strong>Download CSV</strong> and <strong>Download Excel</strong> save the complete table: every composition, whatever
+  filters are set on screen, with its confidence, reason, type, masses and supporting-spectrum
+  details. The Excel file has a "notes" sheet explaining the columns and the confidence rules.</li>
+<li><strong>Methods text</strong> gives a ready-to-paste Methods paragraph describing exactly how this analysis
+  was run: software and version, how the file was read, derivative, adducts, tolerances, isotope
+  handling, plausibility rules, fragment scoring and the confidence-tier rules, with references and
+  a suggested citation. Copy it or download it as a text file, and adjust it to your own style.</li>
+</ul>
+<h2 id="licence-and-trial">Licence and trial</h2>
+<p>Arka Glycan runs as a <strong>30-day free trial</strong> without a key. Add a licence key on the <strong>Licence</strong>
+page (paste the key you received; it starts with <code>ARKA1.</code>). The key is checked on your computer;
+no internet connection is needed. The header always shows your licence (tier and expiry) or the
+days left in the trial.</p>
+<ul>
+<li><strong>Subscriptions</strong> work until their expiry date and for <strong>14 more days of grace</strong>.</li>
+<li>After a trial or subscription ends, Arka Glycan is <strong>read-only</strong>: you can still open, view and
+  export every past analysis, but you need a key to start new ones. Your data are never locked or
+  deleted.</li>
+<li><strong>Perpetual licences</strong> keep working. After their update period ends, the header says so; newer
+  versions need a renewal.</li>
+</ul>
+<h2 id="where-your-data-are">Where your data are</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Analyses, settings, licence, converter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS</td>
+<td><code>~/.glycan-tool</code> (a hidden folder in your home folder; in Finder: Go → Go to Folder → <code>~/.glycan-tool</code>)</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><code>%LOCALAPPDATA%\Arka Glycan</code> (paste it into the File Explorer address bar)</td>
+</tr>
+</tbody>
+</table>
+<p>Each analysis has its own folder with the uploaded file, the converted mzML (if any), the
+per-spectrum results (<code>spectra.tsv</code>) and the glycan table (<code>glycans.csv</code>, <code>glycans.xlsx</code>). The app's
+log is <code>app.log</code> in the same place. Back this folder up to keep your analyses.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>These are the messages Arka Glycan can show, with what to do.</p>
+<p><strong>Installing and starting</strong></p>
+<ul>
+<li><em>"Arka Glycan" Not Opened</em> (macOS) or <em>Windows protected your PC</em> (Windows): see
+  <a href="#install">Install</a>. The apps are not yet code-signed.</li>
+<li><em>Port … is in use</em>: another program uses Arka Glycan's port. Arka Glycan normally picks the next
+  free port by itself; this message only appears when a fixed port was set with <code>GLYCAN_TOOL_PORT</code>.</li>
+<li>The browser tab says the page cannot be reached: Arka Glycan has stopped (Quit, or the computer
+  slept). Open the app again.</li>
+</ul>
+<p><strong>Uploading files</strong></p>
+<ul>
+<li><em>Choose a Thermo .raw, a zipped Bruker .d folder, or an .mzML or .mzXML file.</em>: the file type is
+  not supported. Convert other vendor formats to mzML with ProteoWizard msconvert.</li>
+<li><em>The upload is not a valid zip file.</em>: re-create the zip of the <code>.d</code> folder.</li>
+<li><em>The zip file must contain exactly one Bruker .d folder (found …).</em>: zip one <code>.d</code> folder at a
+  time, not its parent folder or several runs.</li>
+<li><em>The zip file unpacks to more than 20 GB.</em>: zip a single run.</li>
+<li><em>… was recorded in negative mode, but the adducts chosen are positive-mode carriers. Choose
+  [M-H]- (-H) instead.</em> (or the reverse): change <strong>Adducts</strong> to match your instrument's polarity.</li>
+<li><em>… is a BAF file (maXis, impact or amaZon) …</em>: convert it to mzML with ProteoWizard msconvert on
+  Windows and upload the mzML.</li>
+<li><em>DIA-PASEF runs have no precursor per spectrum and are not supported …</em>: use DDA-PASEF or MS/MS
+  data.</li>
+<li><em>… has no analysis.tdf and analysis.tdf_bin; only timsTOF (TDF) .d folders are supported.</em>: the zip
+  holds an incomplete or non-timsTOF <code>.d</code> folder.</li>
+</ul>
+<p><strong>Thermo .raw files and the converter</strong></p>
+<ul>
+<li><em>Thermo .raw files need ThermoRawFileParser, which was not found …</em>: open <strong>Converter</strong> and install
+  it, or upload an mzML file instead.</li>
+<li><em>Conversion with ThermoRawFileParser failed: …</em>: the file may be incomplete or from an unsupported
+  instrument; try converting it with msconvert, or re-copy it from the instrument computer.</li>
+<li><em>Download failed (…). Check the internet connection and retry.</em>: the converter download needs
+  internet once; retry on a connected network.</li>
+<li><em>The downloaded file does not have the expected SHA-256 checksum; it was deleted.</em>: the download
+  was damaged or altered; retry. If it keeps failing, install the converter by hand (README).</li>
+<li><em>The licence inside the download differs from the one you accepted …</em>: the downloaded converter
+  carries different licence terms; it was not installed. Report it.</li>
+<li><em>There is no pinned converter build for this computer …</em>: the one-click download exists for macOS
+  on Apple Silicon and Windows x64; elsewhere, install ThermoRawFileParser by hand or use mzML.</li>
+<li><em>Could not sign the converter: …</em> (macOS): macOS refused the ad-hoc signature; reinstall from
+  the Converter page or report it.</li>
+</ul>
+<p><strong>Running analyses</strong></p>
+<ul>
+<li><em>The server stopped before this analysis finished.</em>: the app was quit (or the computer shut
+  down) during the analysis; start it again.</li>
+<li><em>This analysis is still running.</em>: wait for it to finish before deleting it.</li>
+<li>An analysis finishes with <strong>0 glycans</strong>: usually a setting does not match the sample. Check the
+  <strong>Derivative / label</strong>, the <strong>Adducts</strong> (and positive or negative mode), and <strong>Spectra to score</strong>.
+  The Try an example analysis shows what a working run looks like.</li>
+<li>Many glycans but most are <em>low</em> confidence: normal for short runs or direct infusion with N-glycan
+  rules. For O-glycans choose <strong>Glycan class: O-glycans</strong>.</li>
+<li>Glycans containing NeuGc in a human sample: choose <strong>Sample type: Human</strong>.</li>
+<li><em>scan … has no glycan assignment in this analysis</em>: the link points to a spectrum without an
+  assignment (for example after re-running); open it from the results table instead.</li>
+</ul>
+<p><strong>Licence</strong></p>
+<ul>
+<li><em>… the trial ended …</em> or <em>… expired …</em> with a red badge: Arka Glycan is read-only. Your analyses
+  stay available; add a (renewed) key on the <strong>Licence</strong> page to start new ones.</li>
+<li><em>this is not an Arka Glycan licence key (it should start with ARKA1.)</em>: paste the whole key,
+  including <code>ARKA1.</code>.</li>
+<li><em>the key is damaged (not valid base64); paste it again in full</em>: part of the key is missing or
+  changed; copy it again from the e-mail. Line breaks are fine.</li>
+<li><em>the key's signature does not match: it was altered or not issued for Arka Glycan</em>: the key was
+  changed or is not an Arka Glycan key; ask for a new one.</li>
+<li><em>unsupported licence version …; update Arka Glycan</em>: the key is newer than this version of the app.</li>
+<li><em>The saved licence key cannot be used: …</em>: the stored key no longer verifies (for example after
+  an update that changed the signing key); paste a current key.</li>
+</ul>
+</div></section>
+</main>
+<footer class="site-footer">
+  <div class="wrap cols">
+    <div>
+      <h4>Arka Glycan</h4>
+      <p>Glycan identification from LC-MS/MS data, on your own computer.</p>
+      <p>&copy; 2026 Vaibhav Singh. All rights reserved.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <ul><li><a href="pricing.html">Pricing</a></li><li><a href="download.html">Download</a></li>
+      <li><a href="user-guide.html">User guide</a></li><li><a href="index.html#beta">Join the beta</a></li></ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul><li><a href="about.html">About us</a></li><li><a href="contact.html">Contact us</a></li>
+      <li><a href="shipping.html">Shipping and delivery</a></li><li><a href="refunds.html">Refund and cancellation</a></li>
+      <li><a href="terms.html">Terms and conditions</a></li><li><a href="privacy.html">Privacy policy</a></li></ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><span class="placeholder">[CONTACT EMAIL]</span><br><span class="placeholder">[POSTAL ADDRESS]</span></p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

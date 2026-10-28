@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arka Glycan: glycan identification from LC-MS/MS, no command line</title>
+<meta name="description" content="Turn Thermo .raw, Bruker timsTOF .d or mzML glycan data into a glycan report with confidence tiers, annotated spectra and a Methods paragraph. Runs offline on Mac and Windows.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="17" width="12" height="12" rx="2" fill="#f5a524"/><circle cx="23" cy="9" r="6" fill="#ffc768"/><path d="M15 21 L19 13" stroke="#e8edf7" stroke-width="2"/></svg>Arka Glycan</a>
+    <nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="pricing.html">Pricing</a><a href="download.html">Download</a><a href="user-guide.html">User guide</a><a href="contact.html">Contact</a></nav>
+  </div>
+</header>
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="pill">Beta open to research labs</span>
+    <h1>From raw file to glycan report in five minutes. No command line.</h1>
+    <p class="lead">Arka Glycan turns released-glycan LC-MS/MS data &mdash; Thermo .raw, Bruker timsTOF .d or mzML &mdash;
+    into a table of glycan compositions with confidence tiers, annotated spectra and a ready-to-paste Methods
+    paragraph. It runs on your own Mac or Windows PC, offline.</p>
+    <div class="actions">
+      <a class="button primary" href="#beta">Join the beta</a>
+      <a class="button" href="pricing.html">See pricing</a>
+      <a class="button" href="user-guide.html">Read the user guide</a>
+    </div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <h2>The problem</h2>
+    <div class="grid">
+      <div class="card"><h3>Annotation by hand is slow</h3><p class="muted">Matching hundreds of MS/MS spectra to glycan compositions in a vendor viewer takes days per batch, and the result depends on who did it.</p></div>
+      <div class="card"><h3>Pipelines need a programmer</h3><p class="muted">Open-source tools are powerful but expect a command line, converted files and scripting that most glycobiology labs do not have time for.</p></div>
+      <div class="card"><h3>Calls without evidence</h3><p class="muted">A composition list alone does not say how sure you can be. Reviewers ask for spectra, settings and a reproducible method.</p></div>
+      <div class="card"><h3>Data that cannot leave the lab</h3><p class="muted">Patient-derived and unpublished data often may not be uploaded to a web service, and many instrument PCs are offline.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <div class="grid">
+      <div class="card"><div class="step-number">1</div><h3>Install</h3><p class="muted">One installer for macOS (Apple Silicon) or Windows 10/11. No Python, no command line.</p></div>
+      <div class="card"><div class="step-number">2</div><h3>Open your file</h3><p class="muted">Thermo .raw, a zipped Bruker timsTOF .d folder, or mzML/mzXML. Or try the bundled example.</p></div>
+      <div class="card"><div class="step-number">3</div><h3>Check the settings</h3><p class="muted">Validated defaults for permethylated N-glycans, and plain-language settings for RapiFluor, 2-AB, procainamide and O-glycans, positive or negative mode.</p></div>
+      <div class="card"><div class="step-number">4</div><h3>Get the report</h3><p class="muted">Glycans with confidence tiers, annotated spectra, CSV and Excel downloads, and a Methods paragraph with the exact settings.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="validation">
+  <div class="wrap">
+    <h2>Validated on public data</h2>
+    <p class="muted">We ran Arka Glycan on four public datasets and compared its calls with the glycans the authors themselves reported.</p>
+    
+<div class="table-wrap">
+<table>
+<thead><tr><th>Public dataset</th><th>Sample and chemistry</th><th>Instrument</th><th>Compared with</th><th>Agreement</th></tr></thead>
+<tbody>
+<tr><td>GlycoPOST GPST000536<br><span class="muted small">run 13_05162017</span></td><td>Reduced, permethylated cell-surface N-glycans</td><td>LTQ Orbitrap Velos, ion-trap CID</td><td>The authors' 400-composition search list</td><td class="num">86% <span class="muted small">of 873 spectra</span></td></tr>
+<tr><td>PRIDE PXD036704<br><span class="muted small">serum, patient MCI1</span></td><td>Reduced, permethylated serum N-glycans</td><td>LTQ Orbitrap Velos, CID</td><td>The 45 compositions the authors quantified in this sample</td><td class="num">41% <span class="muted small">of 9,809 spectra (64&ndash;66% against the 400-composition list)</span></td></tr>
+<tr><td>GlycoPOST GPST000542<br><span class="muted small">healthy control C17</span></td><td>RapiFluor-MS-labelled serum N-glycans, HILIC</td><td>Orbitrap Elite, ion-trap CID</td><td>The 50 compositions the authors report</td><td class="num">85% <span class="muted small">of 367 spectra; 46 of 50 compositions found</span></td></tr>
+<tr><td>PRIDE PXD050530<br><span class="muted small">porcine gastric mucin</span></td><td>Reduced O-glycans, negative mode, direct infusion</td><td>Bruker timsTOF Pro</td><td>The authors' published composition table</td><td class="num">21 of 22 <span class="muted small">compositions agree</span></td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted small" style="margin-top:12px">Agreement is the share of spectra that Arka Glycan assigned to a composition also found by the dataset's
+authors, measured by us with the default settings. The references differ in strictness: a search list
+(first row) is more lenient than the glycans quantified in one sample (second row), so the numbers are not
+directly comparable between rows. The other compositions were not necessarily wrong: they were not in the authors' list.</p>
+
+  </div>
+</section>
+
+<section id="compare">
+  <div class="wrap">
+    <h2>How it compares</h2>
+    
+<div class="table-wrap">
+<table>
+<thead><tr><th></th><th>Arka Glycan</th><th>Manual annotation</th><th>Open-source command-line pipelines</th><th>Commercial MS software suites</th></tr></thead>
+<tbody>
+<tr><td>No command line or scripting</td><td class="yes">Yes</td><td>Yes</td><td>No</td><td>Usually</td></tr>
+<tr><td>Thermo .raw, Bruker timsTOF .d and mzML in one tool</td><td class="yes">Yes</td><td>Per vendor viewer</td><td>Usually needs conversion first</td><td>Varies by product</td></tr>
+<tr><td>Runs offline; data never leave your computer</td><td class="yes">Yes</td><td>Yes</td><td>Yes</td><td>Varies by product</td></tr>
+<tr><td>Confidence tier and reason for every glycan</td><td class="yes">Yes</td><td>Your judgement</td><td>Varies</td><td>Varies by product</td></tr>
+<tr><td>Annotated spectrum for every call</td><td class="yes">Yes</td><td>Yes, by hand</td><td>Varies</td><td>Usually</td></tr>
+<tr><td>Methods paragraph with the exact settings</td><td class="yes">Yes</td><td>No</td><td>No</td><td>Rarely</td></tr>
+<tr><td>Time for one run</td><td>Minutes</td><td>Hours to days</td><td>Minutes, after setup</td><td>Minutes</td></tr>
+<tr><td>Cost</td><td>From &#8377;45,000 a year for Indian academic labs</td><td>Analyst time</td><td>Free</td><td>Typically higher; often instrument-specific</td></tr>
+</tbody>
+</table>
+</div>
+
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <h2>Pricing</h2>
+    
+<div class="grid">
+  <div class="card plan">
+    <h3>Academic, India</h3>
+    <p class="muted small">Universities and public research institutes in India</p>
+    <div class="price">&#8377;45,000 <small>/ year</small></div>
+    <div class="or">or</div>
+    <div class="price">&#8377;1,50,000 <small>perpetual</small></div>
+  </div>
+  <div class="card plan">
+    <h3>Academic, worldwide</h3>
+    <p class="muted small">Universities and non-profit research institutes</p>
+    <div class="price">$900 <small>/ year</small></div>
+    <div class="or">or</div>
+    <div class="price">$2,400 <small>perpetual</small></div>
+  </div>
+  <div class="card plan">
+    <h3>Industry</h3>
+    <p class="muted small">Companies and contract labs, per site</p>
+    <div class="price">$4,500 <small>/ year per site</small></div>
+    <div class="or">or</div>
+    <div class="price">$9,500 <small>perpetual per site</small></div>
+  </div>
+</div>
+
+    <div style="margin-top:20px">
+<ul class="ticks">
+  <li>Perpetual licences include one year of updates; after that, maintenance (updates and support) is about 20% of the licence price a year, and the software keeps working without it.</li>
+  <li>Beta labs: three months free, then 50% off the first year.</li>
+  <li>Every installation starts with a 30-day free trial. When a subscription ends, Arka Glycan stays usable in read-only mode: you can open and export every past analysis.</li>
+</ul>
+</div>
+    <p style="margin-top:16px"><a href="pricing.html">Full pricing details &rarr;</a></p>
+  </div>
+</section>
+
+<section id="beta">
+  <div class="wrap">
+    <h2>Join the beta</h2>
+    <p class="muted">The beta is open to research labs working with released glycans. Beta labs use Arka Glycan free for three months, then get 50% off the first year. Tell us about your data and we will send an invitation.</p>
+    
+<form class="beta" id="beta-form" data-to="[CONTACT EMAIL]" action="mailto:[CONTACT EMAIL]" method="post" enctype="text/plain">
+  <label>Your name<input name="name" required autocomplete="name"></label>
+  <label>Institution or company<input name="institution" required autocomplete="organization"></label>
+  <label>Email<input name="email" type="email" required autocomplete="email"></label>
+  <label>Country<input name="country" autocomplete="country-name"></label>
+  <label>Mass spectrometer<input name="instrument" placeholder="e.g. Orbitrap Exploris 480, timsTOF Pro"></label>
+  <label>Glycan samples<input name="samples" placeholder="e.g. permethylated serum N-glycans"></label>
+  <label class="full">Anything else?<textarea name="message" rows="4"></textarea></label>
+  <div class="full actions" style="margin-top:0">
+    <button class="button primary" type="submit">Open a pre-filled email</button>
+    <span class="muted small" style="align-self:center">Opens your email app with your details filled in; nothing is sent until you press Send. No data are stored on this website.</span>
+  </div>
+</form>
+<script>
+// Build a pre-filled email from the form: no form service, nothing leaves the browser until the user sends it.
+document.getElementById("beta-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  var form = event.target, data = new FormData(form), lines = [];
+  var labels = {name: "Name", institution: "Institution", email: "Email", country: "Country",
+                instrument: "Mass spectrometer", samples: "Glycan samples", message: "Message"};
+  for (var key in labels) lines.push(labels[key] + ": " + (data.get(key) || ""));
+  var subject = "Arka Glycan beta: " + (data.get("institution") || data.get("name") || "");
+  window.location.href = "mailto:" + form.dataset.to + "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent("Hello,\n\nI would like to join the Arka Glycan beta.\n\n" + lines.join("\n") + "\n");
+});
+</script>
+
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap cols">
+    <div>
+      <h4>Arka Glycan</h4>
+      <p>Glycan identification from LC-MS/MS data, on your own computer.</p>
+      <p>&copy; 2026 Vaibhav Singh. All rights reserved.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <ul><li><a href="pricing.html">Pricing</a></li><li><a href="download.html">Download</a></li>
+      <li><a href="user-guide.html">User guide</a></li><li><a href="index.html#beta">Join the beta</a></li></ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul><li><a href="about.html">About us</a></li><li><a href="contact.html">Contact us</a></li>
+      <li><a href="shipping.html">Shipping and delivery</a></li><li><a href="refunds.html">Refund and cancellation</a></li>
+      <li><a href="terms.html">Terms and conditions</a></li><li><a href="privacy.html">Privacy policy</a></li></ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><span class="placeholder">[CONTACT EMAIL]</span><br><span class="placeholder">[POSTAL ADDRESS]</span></p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
