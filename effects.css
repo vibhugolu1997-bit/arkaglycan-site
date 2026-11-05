@@ -1,0 +1,59 @@
+/* Home-page effects: 3D hero, drifting light, tilting cards, agreement bars.
+   Everything is visible at rest; motion only adds to it, and stops under prefers-reduced-motion. */
+
+.hero { position: relative; overflow: hidden; isolation: isolate; }
+.hero::before, .hero::after {
+  content: ""; position: absolute; z-index: -1; border-radius: 50%; filter: blur(60px); opacity: 0.55;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.hero::before { width: 520px; height: 520px; left: -160px; top: -200px; background: #1d3a85; }
+.hero::after { width: 420px; height: 420px; right: -120px; bottom: -220px; background: #7a4a0c; animation-delay: -9s; }
+@keyframes drift { to { transform: translate(80px, 60px) scale(1.15); } }
+
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+.hero-visual { position: relative; }
+#glycan-3d {
+  position: relative; height: 420px; border-radius: 16px; cursor: grab; touch-action: pan-y;
+  background: radial-gradient(closest-side, rgba(245, 165, 36, 0.10), transparent 70%);
+}
+#glycan-3d:active { cursor: grabbing; }
+#glycan-3d canvas { display: block; width: 100%; height: 100%; }
+#glycan-3d .fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+#glycan-3d.webgl-ready .fallback { display: none; }
+.snfg-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; font-size: 0.8rem; color: var(--muted); margin-top: 8px; }
+.snfg-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.snfg-legend svg { width: 12px; height: 12px; }
+.hero-caption { text-align: center; font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+/* cards: depth on hover, with a glow that follows the pointer */
+.tilt { transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; transform-style: preserve-3d; will-change: transform; position: relative; }
+.tilt:hover { border-color: var(--amber); box-shadow: 0 18px 40px -18px rgba(245, 165, 36, 0.45); }
+.tilt::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+  background: radial-gradient(300px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(245, 165, 36, 0.14), transparent 60%);
+  transition: opacity 0.25s ease;
+}
+.tilt:hover::after { opacity: 1; }
+.step-number { box-shadow: 0 0 0 6px rgba(245, 165, 36, 0.15); }
+
+/* sections lift into place when they scroll in (in place already if this never runs) */
+.lift.arrived { animation: lift 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes lift { from { transform: translateY(22px); } to { transform: none; } }
+
+/* agreement bars under the validation numbers, at their real values */
+.meter { display: block; height: 6px; border-radius: 3px; background: var(--navy-700); margin-top: 6px; overflow: hidden; min-width: 120px; }
+.meter i { display: block; height: 100%; width: var(--v); border-radius: 3px; position: relative; overflow: hidden;
+  background: linear-gradient(90deg, #c47d0e, var(--amber)); }
+.meter i::after { content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent); animation: shimmer 2.8s ease-in-out infinite; }
+@keyframes shimmer { 60%, 100% { transform: translateX(100%); } }
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  #glycan-3d { height: 320px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .hero::after, .meter i::after, .lift.arrived { animation: none; }
+  .tilt, .tilt::after { transition: none; }
+}

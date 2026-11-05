@@ -7,6 +7,7 @@
 <meta name="description" content="Turn Thermo .raw, Bruker timsTOF .d or mzML glycan data into a glycan report with confidence tiers, annotated spectra and a Methods paragraph. Runs offline on Mac and Windows.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="effects.css">
 </head>
 <body>
 <header class="site-header">
@@ -18,7 +19,8 @@
 <main>
 
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap hero-grid">
+   <div>
     <span class="pill">Beta open to research labs</span>
     <h1>From raw file to glycan report in five minutes. No command line.</h1>
     <p class="lead">Arka Glycan turns released-glycan LC-MS/MS data &mdash; Thermo .raw, Bruker timsTOF .d or mzML &mdash;
@@ -29,35 +31,43 @@
       <a class="button" href="pricing.html">See pricing</a>
       <a class="button" href="user-guide.html">Read the user guide</a>
     </div>
+   </div>
+   <div class="hero-visual">
+    <div id="glycan-3d" role="img" aria-label="Rotating 3D model of a biantennary N-glycan above an MS/MS spectrum. Drag to turn it.">
+      <div class="fallback"><svg class="fallback-art" viewBox="0 0 300 150" width="300" height="150" role="img" aria-label="Biantennary, disialylated, core-fucosylated N-glycan in SNFG symbols"><g stroke="#c9d3ea" stroke-width="2"><line x1="270" y1="75" x2="230" y2="75"/><line x1="230" y1="75" x2="190" y2="75"/><line x1="190" y1="75" x2="155" y2="40"/><line x1="190" y1="75" x2="155" y2="110"/><line x1="155" y1="40" x2="115" y2="40"/><line x1="155" y1="110" x2="115" y2="110"/><line x1="115" y1="40" x2="75" y2="40"/><line x1="115" y1="110" x2="75" y2="110"/><line x1="75" y1="40" x2="35" y2="40"/><line x1="75" y1="110" x2="35" y2="110"/><line x1="270" y1="75" x2="270" y2="115"/></g><rect x="260" y="65" width="20" height="20" fill="#0072bc"/><rect x="220" y="65" width="20" height="20" fill="#0072bc"/><circle cx="190" cy="75" r="10" fill="#00a651"/><circle cx="155" cy="40" r="10" fill="#00a651"/><circle cx="155" cy="110" r="10" fill="#00a651"/><rect x="105" y="30" width="20" height="20" fill="#0072bc"/><rect x="105" y="100" width="20" height="20" fill="#0072bc"/><circle cx="75" cy="40" r="10" fill="#ffd400"/><circle cx="75" cy="110" r="10" fill="#ffd400"/><polygon points="35,28 47,40 35,52 23,40" fill="#a54399"/><polygon points="35,98 47,110 35,122 23,110" fill="#a54399"/><polygon points="270,105 280,125 260,125" fill="#ed1c24"/></svg></div>
+    </div>
+    <div class="snfg-legend" aria-hidden="true"><span><svg viewBox="0 0 12 12"><rect x="1" y="1" width="10" height="10" fill="#0072bc"/></svg>GlcNAc</span><span><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#00a651"/></svg>Man</span><span><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#ffd400"/></svg>Gal</span><span><svg viewBox="0 0 12 12"><polygon points="6,1 11,11 1,11" fill="#ed1c24"/></svg>Fuc</span><span><svg viewBox="0 0 12 12"><polygon points="6,0 12,6 6,12 0,6" fill="#a54399"/></svg>NeuAc</span></div>
+    <p class="hero-caption">A2G2S2F, the most common serum N-glycan, above its MS/MS spectrum. Drag to turn it.</p>
+   </div>
   </div>
 </section>
 
 <section id="problem">
-  <div class="wrap">
+  <div class="wrap lift">
     <h2>The problem</h2>
     <div class="grid">
-      <div class="card"><h3>Annotation by hand is slow</h3><p class="muted">Matching hundreds of MS/MS spectra to glycan compositions in a vendor viewer takes days per batch, and the result depends on who did it.</p></div>
-      <div class="card"><h3>Pipelines need a programmer</h3><p class="muted">Open-source tools are powerful but expect a command line, converted files and scripting that most glycobiology labs do not have time for.</p></div>
-      <div class="card"><h3>Calls without evidence</h3><p class="muted">A composition list alone does not say how sure you can be. Reviewers ask for spectra, settings and a reproducible method.</p></div>
-      <div class="card"><h3>Data that cannot leave the lab</h3><p class="muted">Patient-derived and unpublished data often may not be uploaded to a web service, and many instrument PCs are offline.</p></div>
+      <div class="card tilt"><h3>Annotation by hand is slow</h3><p class="muted">Matching hundreds of MS/MS spectra to glycan compositions in a vendor viewer takes days per batch, and the result depends on who did it.</p></div>
+      <div class="card tilt"><h3>Pipelines need a programmer</h3><p class="muted">Open-source tools are powerful but expect a command line, converted files and scripting that most glycobiology labs do not have time for.</p></div>
+      <div class="card tilt"><h3>Calls without evidence</h3><p class="muted">A composition list alone does not say how sure you can be. Reviewers ask for spectra, settings and a reproducible method.</p></div>
+      <div class="card tilt"><h3>Data that cannot leave the lab</h3><p class="muted">Patient-derived and unpublished data often may not be uploaded to a web service, and many instrument PCs are offline.</p></div>
     </div>
   </div>
 </section>
 
 <section id="how">
-  <div class="wrap">
+  <div class="wrap lift">
     <h2>How it works</h2>
     <div class="grid">
-      <div class="card"><div class="step-number">1</div><h3>Install</h3><p class="muted">One installer for macOS (Apple Silicon) or Windows 10/11. No Python, no command line.</p></div>
-      <div class="card"><div class="step-number">2</div><h3>Open your file</h3><p class="muted">Thermo .raw, a zipped Bruker timsTOF .d folder, or mzML/mzXML. Or try the bundled example.</p></div>
-      <div class="card"><div class="step-number">3</div><h3>Check the settings</h3><p class="muted">Validated defaults for permethylated N-glycans, and plain-language settings for RapiFluor, 2-AB, procainamide and O-glycans, positive or negative mode.</p></div>
-      <div class="card"><div class="step-number">4</div><h3>Get the report</h3><p class="muted">Glycans with confidence tiers, annotated spectra, CSV and Excel downloads, and a Methods paragraph with the exact settings.</p></div>
+      <div class="card tilt"><div class="step-number">1</div><h3>Install</h3><p class="muted">One installer for macOS (Apple Silicon) or Windows 10/11. No Python, no command line.</p></div>
+      <div class="card tilt"><div class="step-number">2</div><h3>Open your file</h3><p class="muted">Thermo .raw, a zipped Bruker timsTOF .d folder, or mzML/mzXML. Or try the bundled example.</p></div>
+      <div class="card tilt"><div class="step-number">3</div><h3>Check the settings</h3><p class="muted">Validated defaults for permethylated N-glycans, and plain-language settings for RapiFluor, 2-AB, procainamide and O-glycans, positive or negative mode.</p></div>
+      <div class="card tilt"><div class="step-number">4</div><h3>Get the report</h3><p class="muted">Glycans with confidence tiers, annotated spectra, CSV and Excel downloads, and a Methods paragraph with the exact settings.</p></div>
     </div>
   </div>
 </section>
 
 <section id="validation">
-  <div class="wrap">
+  <div class="wrap lift">
     <h2>Validated on public data</h2>
     <p class="muted">We ran Arka Glycan on four public datasets and compared its calls with the glycans the authors themselves reported.</p>
     
@@ -65,10 +75,10 @@
 <table>
 <thead><tr><th>Public dataset</th><th>Sample and chemistry</th><th>Instrument</th><th>Compared with</th><th>Agreement</th></tr></thead>
 <tbody>
-<tr><td>GlycoPOST GPST000536<br><span class="muted small">run 13_05162017</span></td><td>Reduced, permethylated cell-surface N-glycans</td><td>LTQ Orbitrap Velos, ion-trap CID</td><td>The authors' 400-composition search list</td><td class="num">86% <span class="muted small">of 873 spectra</span></td></tr>
-<tr><td>PRIDE PXD036704<br><span class="muted small">serum, patient MCI1</span></td><td>Reduced, permethylated serum N-glycans</td><td>LTQ Orbitrap Velos, CID</td><td>The 45 compositions the authors quantified in this sample</td><td class="num">41% <span class="muted small">of 9,809 spectra (64&ndash;66% against the 400-composition list)</span></td></tr>
-<tr><td>GlycoPOST GPST000542<br><span class="muted small">healthy control C17</span></td><td>RapiFluor-MS-labelled serum N-glycans, HILIC</td><td>Orbitrap Elite, ion-trap CID</td><td>The 50 compositions the authors report</td><td class="num">85% <span class="muted small">of 367 spectra; 46 of 50 compositions found</span></td></tr>
-<tr><td>PRIDE PXD050530<br><span class="muted small">porcine gastric mucin</span></td><td>Reduced O-glycans, negative mode, direct infusion</td><td>Bruker timsTOF Pro</td><td>The authors' published composition table</td><td class="num">21 of 22 <span class="muted small">compositions agree</span></td></tr>
+<tr><td>GlycoPOST GPST000536<br><span class="muted small">run 13_05162017</span></td><td>Reduced, permethylated cell-surface N-glycans</td><td>LTQ Orbitrap Velos, ion-trap CID</td><td>The authors' 400-composition search list</td><td class="num">86% <span class="muted small">of 873 spectra</span><span class="meter" aria-hidden="true"><i style="--v:86%"></i></span></td></tr>
+<tr><td>PRIDE PXD036704<br><span class="muted small">serum, patient MCI1</span></td><td>Reduced, permethylated serum N-glycans</td><td>LTQ Orbitrap Velos, CID</td><td>The 45 compositions the authors quantified in this sample</td><td class="num">41% <span class="muted small">of 9,809 spectra (64&ndash;66% against the 400-composition list)</span><span class="meter" aria-hidden="true"><i style="--v:41%"></i></span></td></tr>
+<tr><td>GlycoPOST GPST000542<br><span class="muted small">healthy control C17</span></td><td>RapiFluor-MS-labelled serum N-glycans, HILIC</td><td>Orbitrap Elite, ion-trap CID</td><td>The 50 compositions the authors report</td><td class="num">85% <span class="muted small">of 367 spectra; 46 of 50 compositions found</span><span class="meter" aria-hidden="true"><i style="--v:85%"></i></span></td></tr>
+<tr><td>PRIDE PXD050530<br><span class="muted small">porcine gastric mucin</span></td><td>Reduced O-glycans, negative mode, direct infusion</td><td>Bruker timsTOF Pro</td><td>The authors' published composition table</td><td class="num">21 of 22 <span class="muted small">compositions agree</span><span class="meter" aria-hidden="true"><i style="--v:95%"></i></span></td></tr>
 </tbody>
 </table>
 </div>
@@ -81,7 +91,7 @@ directly comparable between rows. The other compositions were not necessarily wr
 </section>
 
 <section id="compare">
-  <div class="wrap">
+  <div class="wrap lift">
     <h2>How it compares</h2>
     
 <div class="table-wrap">
@@ -104,25 +114,25 @@ directly comparable between rows. The other compositions were not necessarily wr
 </section>
 
 <section id="pricing">
-  <div class="wrap">
+  <div class="wrap lift">
     <h2>Pricing</h2>
     
 <div class="grid">
-  <div class="card plan">
+  <div class="card plan tilt">
     <h3>Academic, India</h3>
     <p class="muted small">Universities and public research institutes in India</p>
     <div class="price">&#8377;45,000 <small>/ year</small></div>
     <div class="or">or</div>
     <div class="price">&#8377;1,50,000 <small>perpetual</small></div>
   </div>
-  <div class="card plan">
+  <div class="card plan tilt">
     <h3>Academic, worldwide</h3>
     <p class="muted small">Universities and non-profit research institutes</p>
     <div class="price">$900 <small>/ year</small></div>
     <div class="or">or</div>
     <div class="price">$2,400 <small>perpetual</small></div>
   </div>
-  <div class="card plan">
+  <div class="card plan tilt">
     <h3>Industry</h3>
     <p class="muted small">Companies and contract labs, per site</p>
     <div class="price">$4,500 <small>/ year per site</small></div>
@@ -143,7 +153,7 @@ directly comparable between rows. The other compositions were not necessarily wr
 </section>
 
 <section id="beta">
-  <div class="wrap">
+  <div class="wrap lift">
     <h2>Join the beta</h2>
     <p class="muted">The beta is open to research labs working with released glycans. Beta labs use Arka Glycan free for three months, then get 50% off the first year. Tell us about your data and we will send an invitation.</p>
     
@@ -202,5 +212,7 @@ document.getElementById("beta-form").addEventListener("submit", function (event)
     </div>
   </div>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="effects.js"></script>
 </body>
 </html>
