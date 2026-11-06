@@ -20,12 +20,10 @@ change those in every page together.
 
 ## Before going live: fill in the placeholders
 
-`[CONTACT EMAIL]` and `[POSTAL ADDRESS]` appear on every page (highlighted in amber) and in
-the beta form's `mailto:` address. Replace them everywhere, for example:
+The contact email is hello@arkaglycan.com (Zoho Mail). `[POSTAL ADDRESS]` appears on every page (highlighted in amber). Replace it everywhere, for example:
 
 ```bash
-grep -l "\[CONTACT EMAIL\]\|\[POSTAL ADDRESS\]" *.html | xargs sed -i '' \
-  -e 's/\[CONTACT EMAIL\]/hello@arkaglycan.com/g' \
+grep -l "\[POSTAL ADDRESS\]" *.html | xargs sed -i '' \
   -e 's/\[POSTAL ADDRESS\]/Your street, City 560001, India/g'
 ```
 
