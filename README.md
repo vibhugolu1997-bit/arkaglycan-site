@@ -18,18 +18,11 @@ The product website for [Arka Glycan](https://arkaglycan.com): plain static HTML
 All pages share `styles.css` (dark navy and amber) and repeat the same header and footer;
 change those in every page together.
 
-## Before going live: fill in the placeholders
+## Contact details
 
-The contact email is hello@arkaglycan.com (Zoho Mail). `[POSTAL ADDRESS]` appears on every page (highlighted in amber). Replace it everywhere, for example:
-
-```bash
-grep -l "\[POSTAL ADDRESS\]" *.html | xargs sed -i '' \
-  -e 's/\[POSTAL ADDRESS\]/Your street, City 560001, India/g'
-```
-
-(on Linux, drop the `''` after `-i`). Then remove the `placeholder` highlight by replacing
-`<span class="placeholder">` … `</span>` around them, or leave the class out of
-`styles.css`. The policy pages are drafts: have them reviewed before accepting payments.
+Every page's footer gives hello@arkaglycan.com (Zoho Mail) and the postal address
+Professor Colony, Budaun 243601, Uttar Pradesh, India. To change either, replace it in
+every page together. The policy pages are drafts: have them reviewed before accepting payments.
 
 ## The beta form
 
